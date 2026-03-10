@@ -23,30 +23,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-family: var(--font-sans);
   background: #e8e6e1;
-  overflow-x: hidden;
-  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 #root {
-  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Allow mobile scrolling inside the mobile container */
+@media (max-width: 767px) {
+  html, body, #root {
+    overflow: visible;
+    overflow-x: hidden;
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
 }

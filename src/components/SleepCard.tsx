@@ -1,37 +1,38 @@
 import GlassPanel from './GlassPanel';
+import { useAmbient } from './AmbientContext';
 import { sleepData } from '../data/mockHealthData';
 
 export default function SleepCard({ delay = 0 }: { delay?: number }) {
+  const { config } = useAmbient();
   const totalWidth = sleepData.stages.reduce((sum, s) => sum + s.hours, 0);
 
   return (
-    <GlassPanel delay={delay} className="flex flex-col gap-4">
+    <GlassPanel delay={delay} className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        <div className="w-[7px] h-[7px] rounded-full bg-accent-sleep" />
-        <span className="text-[12px] font-medium tracking-[0.06em] uppercase text-text-tertiary">
+        <div className="w-[6px] h-[6px] rounded-full bg-accent-sleep" />
+        <span className="text-[11px] font-[500] tracking-[0.08em] uppercase" style={{ color: config.textTertiary }}>
           Sleep
         </span>
       </div>
 
       <div className="flex items-baseline gap-3">
         <div className="flex items-baseline gap-1.5">
-          <span className="text-[32px] md:text-[36px] font-[300] leading-none tracking-tight text-text-primary">
+          <span className="text-[28px] lg:text-[32px] font-[300] leading-none tracking-tight" style={{ color: config.textPrimary }}>
             {sleepData.totalHours}
           </span>
-          <span className="text-[13px] text-text-tertiary">hrs</span>
+          <span className="text-[12px]" style={{ color: config.textTertiary }}>hrs</span>
         </div>
         <div className="flex items-baseline gap-1">
-          <span className="text-[18px] font-[300] text-text-primary/70">{sleepData.quality}</span>
-          <span className="text-[11px] text-text-tertiary">quality</span>
+          <span className="text-[16px] font-[300]" style={{ color: `${config.textPrimary}90` }}>{sleepData.quality}</span>
+          <span className="text-[10px]" style={{ color: config.textTertiary }}>quality</span>
         </div>
       </div>
 
-      {/* Sleep stage bar */}
-      <div className="flex rounded-full h-[6px] overflow-hidden gap-[2px]">
+      <div className="flex rounded-full h-[5px] overflow-hidden gap-[2px]">
         {sleepData.stages.map((stage) => (
           <div
             key={stage.label}
-            className="h-full rounded-full first:rounded-l-full last:rounded-r-full"
+            className="h-full rounded-full"
             style={{
               width: `${(stage.hours / totalWidth) * 100}%`,
               backgroundColor: stage.color,
@@ -40,23 +41,19 @@ export default function SleepCard({ delay = 0 }: { delay?: number }) {
         ))}
       </div>
 
-      {/* Stage labels */}
       <div className="flex gap-3 flex-wrap">
         {sleepData.stages.map((stage) => (
           <div key={stage.label} className="flex items-center gap-1.5">
-            <div
-              className="w-[5px] h-[5px] rounded-full"
-              style={{ backgroundColor: stage.color }}
-            />
-            <span className="text-[11px] text-text-tertiary">
+            <div className="w-[4px] h-[4px] rounded-full" style={{ backgroundColor: stage.color }} />
+            <span className="text-[10px]" style={{ color: config.textTertiary }}>
               {stage.label} {stage.hours}h
             </span>
           </div>
         ))}
       </div>
 
-      <div className="flex gap-4 text-[12px] text-text-secondary">
-        <span>{sleepData.bedtime} → {sleepData.wakeTime}</span>
+      <div className="text-[11px]" style={{ color: config.textSecondary }}>
+        {sleepData.bedtime} → {sleepData.wakeTime}
       </div>
     </GlassPanel>
   );
