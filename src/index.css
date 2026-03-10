@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+  --color-glass-white: rgba(255, 255, 255, 0.55);
+  --color-glass-white-subtle: rgba(255, 255, 255, 0.25);
+  --color-glass-edge: rgba(255, 255, 255, 0.45);
+  --color-glass-inner: rgba(255, 255, 255, 0.12);
+  --color-surface-primary: rgba(255, 255, 255, 0.7);
+  --color-surface-secondary: rgba(255, 255, 255, 0.45);
+  --color-text-primary: rgba(30, 30, 35, 0.88);
+  --color-text-secondary: rgba(30, 30, 35, 0.52);
+  --color-text-tertiary: rgba(30, 30, 35, 0.34);
+  --color-accent-recovery: rgba(120, 190, 160, 0.85);
+  --color-accent-sleep: rgba(130, 150, 210, 0.80);
+  --color-accent-stress: rgba(210, 170, 120, 0.75);
+  --color-accent-heart: rgba(210, 130, 140, 0.80);
+  --color-accent-breath: rgba(140, 190, 210, 0.80);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: #e8e6e1;
+  overflow-x: hidden;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
