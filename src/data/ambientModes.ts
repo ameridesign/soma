@@ -1,8 +1,9 @@
-export type AmbientMode = 'dawn' | 'mist' | 'night';
+export type AmbientMode = 'meadow' | 'dawn' | 'mist' | 'night';
 
 export interface AmbientConfig {
   label: string;
   base: string;
+  backgroundImage?: string;
   orbs: {
     position: string;
     size: string;
@@ -22,7 +23,39 @@ export interface AmbientConfig {
   accentRecovery: string;
 }
 
+const basePath = import.meta.env.BASE_URL;
+
 export const ambientModes: Record<AmbientMode, AmbientConfig> = {
+  meadow: {
+    label: 'Meadow',
+    base: '#5a6e3a',
+    backgroundImage: `${basePath}backgrounds/grass.jpg`,
+    orbs: [
+      {
+        position: 'top-[-10%] left-[5%]',
+        size: 'w-[60vw] h-[60vw]',
+        gradient: 'radial-gradient(circle, rgba(140,170,90,0.12) 0%, rgba(120,150,80,0.04) 45%, transparent 70%)',
+        blur: '70px',
+      },
+      {
+        position: 'bottom-[-8%] right-[-5%]',
+        size: 'w-[50vw] h-[50vw]',
+        gradient: 'radial-gradient(circle, rgba(160,180,100,0.10) 0%, rgba(140,160,90,0.03) 50%, transparent 70%)',
+        blur: '60px',
+      },
+    ],
+    bloom: 'radial-gradient(circle at 50% 40%, rgba(200,210,160,0.06) 0%, transparent 50%)',
+    textPrimary: 'rgba(255,255,255,0.92)',
+    textSecondary: 'rgba(255,255,255,0.62)',
+    textTertiary: 'rgba(255,255,255,0.40)',
+    glassBg: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.11) 100%)',
+    glassBorder: '0.5px solid rgba(255,255,255,0.18)',
+    glassHighlight: 'rgba(255,255,255,0.22)',
+    glassShadow: '0 4px 32px -8px rgba(0,0,0,0.18), 0 1px 4px -1px rgba(0,0,0,0.10)',
+    glassEdge: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.18) 30%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0.18) 70%, transparent)',
+    glassSurface: 'linear-gradient(180deg, rgba(255,255,255,0.10) 0%, transparent 40%, rgba(255,255,255,0.03) 100%)',
+    accentRecovery: 'rgba(170,210,140,0.80)',
+  },
   dawn: {
     label: 'Dawn',
     base: 'linear-gradient(160deg, #ede9e3 0%, #e8e2db 35%, #e3ddd8 60%, #ebe6e0 100%)',

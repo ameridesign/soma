@@ -15,10 +15,23 @@ export default function AmbientBackground() {
           transition={{ duration: 1.6, ease: [0.22, 0.61, 0.36, 1] }}
           className="absolute inset-0"
         >
-          {/* Base gradient */}
+          {/* Base — solid color or gradient */}
           <div className="absolute inset-0" style={{ background: config.base }} />
 
-          {/* Ambient orbs */}
+          {/* Background image (if present) */}
+          {config.backgroundImage && (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${config.backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            />
+          )}
+
+          {/* Ambient orbs — float on top of image with soft diffusion */}
           {config.orbs.map((orb, i) => (
             <motion.div
               key={i}

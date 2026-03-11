@@ -5,6 +5,7 @@ import { useAmbient } from './AmbientContext';
 import { ambientModes, type AmbientMode } from '../data/ambientModes';
 
 const modeColors: Record<AmbientMode, string> = {
+  meadow: 'linear-gradient(135deg, #8aad5a, #6b8c3e)',
   dawn: 'linear-gradient(135deg, #e8d5c0, #d4bfa8)',
   mist: 'linear-gradient(135deg, #d5ddd8, #c8cdd0)',
   night: 'linear-gradient(135deg, #4a5060, #383d48)',
@@ -13,6 +14,8 @@ const modeColors: Record<AmbientMode, string> = {
 export default function AmbientSwitcher() {
   const { mode, setMode, config } = useAmbient();
   const [open, setOpen] = useState(false);
+
+  const isDark = mode === 'night' || mode === 'meadow';
 
   return (
     <motion.div
@@ -43,14 +46,14 @@ export default function AmbientSwitcher() {
                 onClick={() => { setMode(m); setOpen(false); }}
                 className="flex items-center gap-3 px-3.5 py-2 rounded-[14px] transition-all duration-300 min-w-[120px]"
                 style={{
-                  background: mode === m ? `${config.mode === 'night' ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.35)'}` : 'transparent',
+                  background: mode === m ? (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.35)') : 'transparent',
                 }}
               >
                 <div
                   className="w-5 h-5 rounded-full flex-shrink-0"
                   style={{
                     background: modeColors[m],
-                    boxShadow: mode === m ? `0 0 0 1.5px ${config.mode === 'night' ? 'rgba(255,255,255,0.20)' : 'rgba(0,0,0,0.08)'}` : 'none',
+                    boxShadow: mode === m ? `0 0 0 1.5px ${isDark ? 'rgba(255,255,255,0.20)' : 'rgba(0,0,0,0.08)'}` : 'none',
                   }}
                 />
                 <span
@@ -65,7 +68,6 @@ export default function AmbientSwitcher() {
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
       <motion.button
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}

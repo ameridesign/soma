@@ -10,7 +10,7 @@ interface AmbientState {
 const AmbientCtx = createContext<AmbientState | null>(null);
 
 export function AmbientProvider({ children }: { children: ReactNode }) {
-  const [mode, setModeRaw] = useState<AmbientMode>('mist');
+  const [mode, setModeRaw] = useState<AmbientMode>('meadow');
   const setMode = useCallback((m: AmbientMode) => setModeRaw(m), []);
 
   return (
