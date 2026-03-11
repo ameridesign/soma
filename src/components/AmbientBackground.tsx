@@ -15,10 +15,10 @@ export default function AmbientBackground() {
           transition={{ duration: 1.6, ease: [0.22, 0.61, 0.36, 1] }}
           className="absolute inset-0"
         >
-          {/* Base — solid color or gradient */}
+          {/* Base gradient */}
           <div className="absolute inset-0" style={{ background: config.base }} />
 
-          {/* Background image (if present) */}
+          {/* Background image (if configured) */}
           {config.backgroundImage && (
             <div
               className="absolute inset-0"
@@ -31,7 +31,29 @@ export default function AmbientBackground() {
             />
           )}
 
-          {/* Ambient orbs — float on top of image with soft diffusion */}
+          {/* Meadow-specific: animated light streaks simulating sunlight on grass */}
+          {mode === 'meadow' && (
+            <>
+              <motion.div
+                animate={{ opacity: [0.06, 0.14, 0.06], x: ['-5%', '3%', '-5%'] }}
+                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, transparent 20%, rgba(220,235,140,0.12) 35%, transparent 50%, rgba(200,225,120,0.08) 65%, transparent 80%)',
+                }}
+              />
+              <motion.div
+                animate={{ opacity: [0.04, 0.10, 0.04], x: ['3%', '-4%', '3%'] }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(160deg, transparent 30%, rgba(240,250,180,0.08) 45%, transparent 60%, rgba(210,230,130,0.06) 75%, transparent 90%)',
+                }}
+              />
+            </>
+          )}
+
+          {/* Ambient orbs */}
           {config.orbs.map((orb, i) => (
             <motion.div
               key={i}

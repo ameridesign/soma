@@ -23,25 +23,40 @@ export interface AmbientConfig {
   accentRecovery: string;
 }
 
-const basePath = import.meta.env.BASE_URL;
-
 export const ambientModes: Record<AmbientMode, AmbientConfig> = {
   meadow: {
     label: 'Meadow',
-    base: '#5a6e3a',
-    backgroundImage: `${basePath}backgrounds/grass.jpg`,
+    base: 'linear-gradient(155deg, #5e7a3a 0%, #4a6630 20%, #6b8c42 40%, #527232 55%, #7a9950 70%, #4d6e2e 85%, #5a7838 100%)',
     orbs: [
       {
-        position: 'top-[-10%] left-[5%]',
-        size: 'w-[60vw] h-[60vw]',
-        gradient: 'radial-gradient(circle, rgba(140,170,90,0.12) 0%, rgba(120,150,80,0.04) 45%, transparent 70%)',
-        blur: '70px',
+        position: 'top-[-8%] left-[-5%]',
+        size: 'w-[80vw] h-[50vw]',
+        gradient: 'radial-gradient(ellipse at 40% 50%, rgba(160,195,80,0.30) 0%, rgba(120,160,60,0.12) 40%, transparent 70%)',
+        blur: '50px',
       },
       {
-        position: 'bottom-[-8%] right-[-5%]',
-        size: 'w-[50vw] h-[50vw]',
-        gradient: 'radial-gradient(circle, rgba(160,180,100,0.10) 0%, rgba(140,160,90,0.03) 50%, transparent 70%)',
+        position: 'top-[15%] right-[-10%]',
+        size: 'w-[70vw] h-[45vw]',
+        gradient: 'radial-gradient(ellipse at 60% 40%, rgba(190,210,100,0.22) 0%, rgba(140,170,70,0.08) 45%, transparent 70%)',
+        blur: '55px',
+      },
+      {
+        position: 'bottom-[-10%] left-[10%]',
+        size: 'w-[65vw] h-[50vw]',
+        gradient: 'radial-gradient(ellipse at 50% 60%, rgba(100,140,50,0.25) 0%, rgba(80,120,40,0.10) 45%, transparent 70%)',
         blur: '60px',
+      },
+      {
+        position: 'top-[40%] left-[20%]',
+        size: 'w-[50vw] h-[35vw]',
+        gradient: 'radial-gradient(ellipse, rgba(200,220,120,0.15) 0%, rgba(170,195,90,0.05) 50%, transparent 70%)',
+        blur: '45px',
+      },
+      {
+        position: 'top-[5%] left-[40%]',
+        size: 'w-[40vw] h-[30vw]',
+        gradient: 'radial-gradient(ellipse, rgba(220,230,150,0.12) 0%, transparent 60%)',
+        blur: '40px',
       },
     ],
     bloom: 'radial-gradient(circle at 50% 40%, rgba(200,210,160,0.06) 0%, transparent 50%)',
