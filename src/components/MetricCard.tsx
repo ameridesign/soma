@@ -1,4 +1,5 @@
 import GlassPanel from './GlassPanel';
+import { useAmbient } from './AmbientContext';
 
 interface MetricCardProps {
   label: string;
@@ -11,34 +12,23 @@ interface MetricCardProps {
 }
 
 export default function MetricCard({ label, value, unit, subtitle, accent, delay = 0, children }: MetricCardProps) {
+  const { config } = useAmbient();
+
   return (
     <GlassPanel delay={delay} className="flex flex-col gap-3">
       <div className="flex items-center gap-2">
-        {accent && (
-          <div
-            className="w-[7px] h-[7px] rounded-full"
-            style={{ backgroundColor: accent }}
-          />
-        )}
-        <span className="text-[12px] font-medium tracking-[0.06em] uppercase text-text-tertiary">
+        {accent && <div className="w-[6px] h-[6px] rounded-full" style={{ backgroundColor: accent }} />}
+        <span className="text-[11px] font-[500] tracking-[0.08em] uppercase" style={{ color: config.textTertiary }}>
           {label}
         </span>
       </div>
       <div className="flex items-baseline gap-1.5">
-        <span className="text-[32px] md:text-[36px] font-[300] leading-none tracking-tight text-text-primary">
+        <span className="text-[28px] lg:text-[32px] font-[300] leading-none tracking-tight" style={{ color: config.textPrimary }}>
           {value}
         </span>
-        {unit && (
-          <span className="text-[13px] text-text-tertiary font-normal">
-            {unit}
-          </span>
-        )}
+        {unit && <span className="text-[12px]" style={{ color: config.textTertiary }}>{unit}</span>}
       </div>
-      {subtitle && (
-        <p className="text-[13px] text-text-secondary leading-relaxed">
-          {subtitle}
-        </p>
-      )}
+      {subtitle && <p className="text-[12px] leading-relaxed" style={{ color: config.textSecondary }}>{subtitle}</p>}
       {children}
     </GlassPanel>
   );
