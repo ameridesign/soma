@@ -27,6 +27,7 @@ export const ambientModes: Record<AmbientMode, AmbientConfig> = {
   meadow: {
     label: 'Meadow',
     base: 'linear-gradient(155deg, #5e7a3a 0%, #4a6630 20%, #6b8c42 40%, #527232 55%, #7a9950 70%, #4d6e2e 85%, #5a7838 100%)',
+    backgroundImage: '/backgrounds/grass.jpg',
     orbs: [
       {
         position: 'top-[-8%] left-[-5%]',
