@@ -33,21 +33,18 @@ export default function GlassPanel({ children, className = '', hover = true, del
 
   // Desktop parallax
   const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
   const parallaxFactor = depth === 3 ? 5 : depth === 1 ? 1.5 : 3;
   const px = useSpring(useTransform(mouseX, [-1, 1], [-parallaxFactor, parallaxFactor]), { stiffness: 50, damping: 30 });
-  const py = useSpring(useTransform(mouseY, [-1, 1], [-parallaxFactor, parallaxFactor]), { stiffness: 50, damping: 30 });
 
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) return;
     const handler = (e: MouseEvent) => {
       mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
-      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
     };
     window.addEventListener('mousemove', handler, { passive: true });
     return () => window.removeEventListener('mousemove', handler);
-  }, [mouseX, mouseY]);
+  }, [mouseX]);
 
   const blurAmount = depth === 3 ? 56 : depth === 1 ? 36 : 48;
 
